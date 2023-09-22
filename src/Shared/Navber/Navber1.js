@@ -8,7 +8,7 @@ const Navber1 = () => {
         <div>
             <div className='bg-slate-500 '>
             <Marquee>
-                <p className='text-white p-3' >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nostrum in quia atque recusandae aut voluptates nisi eum facilis earum. Explicabo dolorem incidunt illo aperiam quisquam consectetur earum, ad atque.</p>
+                <p className='text-white p-3' >Welcome To Our Muntajat.com.Our Shop Serveces 24 hour.Thank You For Visiting Our Website</p>
             </Marquee>
             </div>
              <div className="navbar bg-slate-600">
