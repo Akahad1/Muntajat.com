@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Marquee from 'react-fast-marquee';
 import { AiOutlineHome,AiFillContacts } from 'react-icons/ai'
 import { FaBloggerB, } from 'react-icons/fa'
 import { GrCatalog, GrCatalogOption} from 'react-icons/gr'
@@ -8,16 +7,11 @@ import { MdOutlineDashboard,MdOutlineSingleBed} from 'react-icons/md'
 import { BiSolidLogInCircle} from 'react-icons/bi'
 import { RiLogoutCircleLine} from 'react-icons/ri'
 
-const Navber1 = () => {
+const Navber2 = () => {
     const[user,setUser]=useState([])
     return (
         <div>
-            <div className='bg-slate-500 '>
-            <Marquee>
-                <p className='text-white p-3' >Welcome To Our Muntajat.com.Our Shop Serveces 24 hour.Thank You For Visiting Our Website</p>
-            </Marquee>
-            </div>
-             <div className="navbar bg-slate-600">
+            <div className="navbar bg-slate-600">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -36,6 +30,14 @@ const Navber1 = () => {
         </li></Link></li>
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
         <li><Link to='/ContactUs' className='text-xl  font-style'>Contact Us</Link></li>
+
+        {user?.uid?<button className='text-xl ' >Log Out</button>
+    :
+    <>
+    <Link to='/singup' className='text-xl ml-5 mr-5  font-style'>Sing Up</Link>
+    <Link to='/login' className='ml-5 mr-5 text-xl  font-style '> Log In</Link>
+    </>
+    }
         
         
 
@@ -53,14 +55,14 @@ const Navber1 = () => {
 
 
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-end hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-    <li><Link to='/' className='text-xl text-white '><AiOutlineHome className='h-10 w-8 mr-2'/>Home</Link></li>
+    <li><Link to='/' className='text-xl text-white '><AiOutlineHome className='h-10 w-8 mr-2'/></Link></li>
 
-        <li><Link to='/blog' className='text-xl  text-white font-style'> <FaBloggerB className='h-10 w-8 mr-2'/>Blogs</Link></li>
+        <li><Link to='/blog' className='text-xl  text-white font-style'> <FaBloggerB className='h-10 w-8 mr-2'/></Link></li>
 
         <li><Link  className='text-xl  font-style'><div className="dropdown dropdown-bottom">
-  <label className='text-xl text-white h-10' tabIndex={0} > <GrCatalogOption className='inline h-10 w-8 mr-2 bg-white  text-white '/>Catagory</label>
+  <label className='text-xl text-white' tabIndex={0} > <GrCatalogOption className='inline h-10 w-8 mr-2 bg-white  text-white '/></label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
     <li><Link>Item 1</Link></li>
     <li><Link>Item 2</Link></li>
@@ -69,23 +71,23 @@ const Navber1 = () => {
     
   </ul>
 </div></Link></li>
-        <li><Link to='/dashboard' className='text-xl  text-white font-style'><MdOutlineDashboard className='h-10 w-8 mr-2'/>Dashboard</Link></li>
-        <li><Link to='/ContactUs' className=' text-xl  text-white font-style'><AiFillContacts className='h-10 w-10 mr-2'/>Contact Us</Link></li>
+        <li><Link to='/dashboard' className='text-xl  text-white font-style'><MdOutlineDashboard className='h-10 w-8 mr-2'/></Link></li>
+        <li><Link to='/ContactUs' className=' text-xl  text-white font-style'><AiFillContacts className='h-10 w-8 mr-2'/></Link></li>
        
-        
+        {user?.uid?<button className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-12 w-8 mr-2'/></button>
+    :
+    <>
+    <Link to='/singup' className='text-xl  text-white font-style'><MdOutlineSingleBed className='inline h-12 w-8 mr-2'/></Link>
+    <Link to='/login' className='ml-5 mr-5 text-xl  text-white font-style '> <BiSolidLogInCircle className='inline h-12 w-8 mr-2'/></Link>
+    </>
+    }
         
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="">
     
 
-    {user?.uid?<button className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-12 w-10 mr-2'/>Log Out</button>
-    :
-    <>
-    <Link to='/singup' className='text-xl  text-white font-style'><MdOutlineSingleBed className='inline h-12 w-10 mr-2'/>Sing Up</Link>
-    <Link to='/login' className='ml-5 mr-5 text-xl  text-white font-style '> <BiSolidLogInCircle className='inline h-12 w-10 mr-2'/>Log in</Link>
-    </>
-    }
+    
   
    
   </div>
@@ -95,4 +97,4 @@ const Navber1 = () => {
     );
 };
 
-export default Navber1;
+export default Navber2;

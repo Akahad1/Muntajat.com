@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import section from './Section.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Section = () => {
+  useEffect(()=>{
+    AOS.init({duration:'1000'});
+
+},[])
     return (
         <div className='bg-base-200 p-10 mb-16'>
             <div>
-                <p className='mt-10 text-2xl  lg:ml-10 md:ml-1 ml-7 mb-6'>Diffrent Type  products of our site</p>
+                <p className='mt-10 text-2xl  lg:ml-10 md:ml-1 ml-7 mb-6'>DIFFRENT TYPE PRODUCRS OF OUR SITE</p>
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 '>
 
               {/* 1st cols */}
 
-              <div className='grid grid-cols-1 mb-1 lg:ml-10 bg-white'>
+              <div className='grid grid-cols-1 mb-1 lg:ml-10 bg-white' data-aos="flip-left">
 
               <div className="carousel lg:h-96   w-full mt-16">
   <div id="item1" className="carousel-item w-full">
@@ -36,7 +42,7 @@ const Section = () => {
 
 
               {/* 2st cols */}
-              <div className=' bg-white lg:ml-5 md:ml-2 md:mr-0 lg:mr-5  '> 
+              <div className=' bg-white lg:ml-5 md:ml-2 md:mr-0 lg:mr-5  ' data-aos="flip-up"> 
                 <p className='text-xl ml-4 mt-4'>PRODUCTS ADDED TODAY</p>
                 <div className='divider w-32 bg-yellow-500 h-1 ml-4'></div>
               <div className='grid grid-cols-2 '>
@@ -63,7 +69,7 @@ const Section = () => {
               {/* 3rd cols */}
 
 
-              <div className='bg-white lg:mt-0 md:mt-0 mt-10 lg:h-full'>
+              <div className='bg-white lg:mt-0 md:mt-0 mt-10 lg:h-full' data-aos="flip-right">
               <div className='grid grid-cols-1 m  bg-white mt-16 mb-16'>
               <div className="card card-side border ml-2 mr-2 border-gray-800 mb-5">
   <figure><img className='h-36 ml-5 ' src="https://www.cloud.ryanscomputers.com/cdn/products/main/havit-kb380l-rgb-wired-black-gaming-keyboard-11661064845.webp" alt="Movie"/></figure>

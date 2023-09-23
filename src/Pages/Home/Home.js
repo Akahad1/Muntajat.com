@@ -1,11 +1,11 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
-import HomeLaptop from '../HomeLaptop/HomeLaptop';
-import HomeMobile from '../HomeMobile/HomeMobile';
-import HomeTab from '../HomeTab/HomeTab';
 import WhyBuyThis from '../WhyBuyThis/WhyBuyThis';
 import CounterSection from '../CounterSection/CounterSection';
 import Section from '../Section/Section';
+import Sponsorer from '../Sponsorer/Sponsorer';
+import HowToOrder from '../HowToOrder/HowToOrder';
+import HomeAllProduct from '../HomeAllProduct/HomeAllProduct';
 
 const Home = () => {
     return (
@@ -18,12 +18,13 @@ const Home = () => {
             <div>
 
             </div>
-            <HomeLaptop></HomeLaptop>
-            <HomeMobile></HomeMobile>
-            <HomeTab></HomeTab>
+            <HomeAllProduct></HomeAllProduct>
+            
             <WhyBuyThis></WhyBuyThis>
             <CounterSection></CounterSection>
             <Section></Section>
+            <Sponsorer></Sponsorer>
+            <HowToOrder></HowToOrder>
             
             
         </div>
