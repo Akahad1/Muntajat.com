@@ -29,9 +29,9 @@ const Navber1 = () => {
         <li><Link  className='text-xl font-style'><li>
           <Link>Catagory</Link>
           <ul className="p-2">
-            <li><Link>Laptop</Link></li>
-            <li><Link>Mobile</Link></li>
-            <li><Link>Tab</Link></li>
+            <li><Link to='/allproduct/laptop'>All Laptop</Link></li>
+            <li><Link>All Mobile</Link></li>
+              <li><Link>All Tablet</Link></li>
           </ul>
         </li></Link></li>
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
@@ -62,9 +62,9 @@ const Navber1 = () => {
         <li><Link  className='text-xl  font-style'><div className="dropdown dropdown-bottom">
   <label className='text-xl text-white h-10' tabIndex={0} > <GrCatalogOption className='inline h-10 w-8 mr-2 bg-white  text-white '/>Catagory</label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><Link>Item 1</Link></li>
-    <li><Link>Item 2</Link></li>
-    <li><Link>Item 3</Link></li>
+    <li><Link to='/allproduct/laptop'>All Laptop</Link></li>
+    <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
+    <li><Link to='/allproduct/mobile'>All Tablet</Link></li>
     <li><Link>Item 4</Link></li>
     
   </ul>
