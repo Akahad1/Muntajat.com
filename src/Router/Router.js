@@ -6,6 +6,7 @@ import AllLaptop from "../Pages/AllLaptop/AllLaptop";
 import AllMobile from "../Pages/AllMobile/AllMobile";
 import Singup from "../Pages/Authentication/Singup/Singup";
 import LogIn from "../Pages/Authentication/LongIn/LogIn";
+import AllTablet from "../Pages/AllTablet/AllTablet";
 
 
 
@@ -18,7 +19,8 @@ const router=createBrowserRouter([
     ]},
     {path:'/allproduct',element:<Main2></Main2>,children:[
         {path:'/allproduct/laptop',element:<AllLaptop></AllLaptop>},
-        {path:'/allproduct/mobile',element:<AllMobile></AllMobile>}
+        {path:'/allproduct/mobile',element:<AllMobile></AllMobile>},
+        {path:'/allproduct/tab',element:<AllTablet></AllTablet>}
     ]}
 ])
 

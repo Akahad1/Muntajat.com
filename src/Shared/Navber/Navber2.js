@@ -9,7 +9,7 @@ import { RiLogoutCircleLine} from 'react-icons/ri'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navber2 = () => {
-  const {user,logOut,cartSup,setSidebarOpen}=useContext(AuthContext)
+  const {user,logOut,cartSup,setSidebarOpen,SetAddCatagory}=useContext(AuthContext)
   console.log(cartSup)
 
   const logOuthander=()=>{
@@ -32,9 +32,9 @@ const Navber2 = () => {
         <li><Link  className='text-xl font-style'><li>
           <Link>Catagory</Link>
           <ul className="p-2">
-            <li><Link to='/allproduct/laptop'>Laptop</Link></li>
-            <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
-           <li><Link to='/allproduct/tab'>All Tablet</Link></li>
+            <li  onClick={()=>SetAddCatagory('Laptop')}><Link to='/allproduct/laptop'>Laptop</Link></li>
+            <li onClick={()=>SetAddCatagory('Mobile')}><Link to='/allproduct/mobile'>All Mobile</Link></li>
+           <li onClick={()=>SetAddCatagory('Tablet')}><Link to='/allproduct/tab'>All Tablet</Link></li>
           </ul>
         </li></Link></li>
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
@@ -84,9 +84,9 @@ const Navber2 = () => {
         <li className='text-xl  font-style'><div className="dropdown dropdown-bottom">
   <label className='text-xl text-white' tabIndex={0} > <GrCatalogOption className='inline h-8 w-8 mr-2 bg-white  text-white '/></label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-     <li><Link to='/allproduct/laptop'>Laptop</Link></li>
-      <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
-     <li><Link to='/allproduct/tab'>All Tablet</Link></li>
+     <li  onClick={()=>SetAddCatagory('Laptop')}><Link to='/allproduct/laptop'>Laptop</Link></li>
+      <li onClick={()=>SetAddCatagory('Mobile')}><Link to='/allproduct/mobile'>All Mobile</Link></li>
+     <li onClick={()=>SetAddCatagory('Tablet')}><Link to='/allproduct/tab'>All Tablet</Link></li>
     <li><Link>Item 4</Link></li>
     
   </ul>

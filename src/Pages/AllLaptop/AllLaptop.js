@@ -5,6 +5,7 @@ import Cartlaptops from './Cartlaptops';
 import sidenaver from './SideNavber/SideNaver.css'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { BsLayoutTextSidebar } from 'react-icons/bs';
 
 const AllLaptop = () => {
     const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
@@ -23,11 +24,13 @@ const AllLaptop = () => {
   };
 
     return (
-        <div className=''>
+        <div className=' mb-16'>
             <LaptopBanner></LaptopBanner>
-            <div className='lg:hidden inline'>
-            <button className="toggle-button rounded-btn  btn-success" onClick={toggleSidebar}>
-        {isSidebarOpen ? 'Close Sidebar' : 'Show All Product'}
+            <div className='flex justify-between'>
+            <div className='lg:hidden inline ml-1 h-10   w-20'>
+                {/* <BsLayoutTextSidebar className='inline   w-8'/> */}
+            <button className="toggle-button rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
+        {isSidebarOpen ? 'Close Sidebar' : 'Show Sidebar'}
       </button>
       <SideNaver isOpen={isSidebarOpen} onClose={toggleSidebar} />
       <main className="main-content">
@@ -35,8 +38,33 @@ const AllLaptop = () => {
         
       </main>
             </div>
+
+            <div className='lg:ml-10 md:ml-5 ml-1 '>
+                <p className='inline  lg:text-xl'><Link to='/'>Home</Link></p>
+                <span className='text-xl'>/</span>
+                <p className='inline lg:text-xl ' onClick={()=>SetAddCatagory('Laptop')}  ><Link to='/allproduct/laptop'>Shop</Link></p>
+            </div>
+            <div>
+            <div className="form-control">
+  <div className="input-group lg:mr-10 mr-1 md:mr-4">
+    <select name='role'  className="select select-bordered  md:w-44 lg:w-96   w-32">
+      <option  selected>Sort</option>
+      <option>Sellar</option>
+      
+    </select>
+    
+  </div>
+</div>
+            </div>
+                
+            </div>
+            <div className='divider h-1 bg-yellow-500  lg:w-40 md:w-24  lg:ml-10 md:ml-4 w-20 ml-3
+
             
-            <div className='grid grid-cols-12 gap-4 '>
+            '></div>
+            
+            
+            <div className='grid grid-cols-12 gap-4 mt-16'>
                 <div className='lg:col-span-2  bg-base-200 lg:block md:hidden hidden'>
                     <div>
                         <h1  className='text-2xl ml-2 p-3'>ALL CATAGORY PRODUCT</h1>
@@ -50,7 +78,7 @@ const AllLaptop = () => {
 
                 </div>
                 
-                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 '>
+                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center'>
                     {Laptops.map(laptop=><Cartlaptops
                     laptop={laptop}
                     key={laptop._id}

@@ -6,8 +6,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-const CartMobile = ({mobile}) => {
-    const {name,price,SellerName,category,ratings,img}=mobile;
+const CartTablet = ({tablet}) => {
+    const {name,price,SellerName,category,ratings,img}=tablet;
     useEffect(()=>{
         AOS.init({duration:'1000'});
 
@@ -39,4 +39,4 @@ const CartMobile = ({mobile}) => {
     );
 };
 
-export default CartMobile;
+export default CartTablet;
