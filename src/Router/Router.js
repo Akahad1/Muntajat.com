@@ -4,13 +4,17 @@ import Home from "../Pages/Home/Home";
 import Main2 from "../Layout/Main2";
 import AllLaptop from "../Pages/AllLaptop/AllLaptop";
 import AllMobile from "../Pages/AllMobile/AllMobile";
+import Singup from "../Pages/Authentication/Singup/Singup";
+import LogIn from "../Pages/Authentication/LongIn/LogIn";
 
 
 
 const router=createBrowserRouter([
     {path:'/',element:<Main></Main>,
     children:[
-        {path:'/',element:<Home></Home>}
+        {path:'/',element:<Home></Home> },
+        {path:'/singup',element:<Singup></Singup>},
+        {path:'/login',element:<LogIn></LogIn>},
     ]},
     {path:'/allproduct',element:<Main2></Main2>,children:[
         {path:'/allproduct/laptop',element:<AllLaptop></AllLaptop>},

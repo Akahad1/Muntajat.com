@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Marquee from 'react-fast-marquee';
 import { AiOutlineHome,AiFillContacts } from 'react-icons/ai'
@@ -7,12 +7,22 @@ import { GrCatalog, GrCatalogOption} from 'react-icons/gr'
 import { MdOutlineDashboard,MdOutlineSingleBed} from 'react-icons/md'
 import { BiSolidLogInCircle} from 'react-icons/bi'
 import { RiLogoutCircleLine} from 'react-icons/ri'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navber1 = () => {
-    const[user,setUser]=useState([])
+    
+  const {user,logOut,cartSup}=useContext(AuthContext)
+  console.log(cartSup)
+
+  const logOuthander=()=>{
+    logOut()
+    .then(()=>{})
+    .then(error=>console.log(error))
+
+  }
     return (
         <div>
-            <div className='bg-slate-500 '>
+            <div  className={window.location.pathname === '/' ? ' bg-slate-500' : 'hidden'}>
             <Marquee>
                 <p className='text-white p-3' >Welcome To Our Muntajat.com.Our Shop Serveces 24 hour.Thank You For Visiting Our Website</p>
             </Marquee>
@@ -30,8 +40,8 @@ const Navber1 = () => {
           <Link>Catagory</Link>
           <ul className="p-2">
             <li><Link to='/allproduct/laptop'>All Laptop</Link></li>
-            <li><Link>All Mobile</Link></li>
-              <li><Link>All Tablet</Link></li>
+            <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
+              <li><Link to='/allproduct/tab'>All Tablet</Link></li>
           </ul>
         </li></Link></li>
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
@@ -64,8 +74,8 @@ const Navber1 = () => {
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
     <li><Link to='/allproduct/laptop'>All Laptop</Link></li>
     <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
-    <li><Link to='/allproduct/mobile'>All Tablet</Link></li>
-    <li><Link>Item 4</Link></li>
+    <li><Link to='/allproduct/tab'>All Tablet</Link></li>
+    <li><Link>{user?.name}</Link></li>
     
   </ul>
 </div></Link></li>
@@ -79,7 +89,7 @@ const Navber1 = () => {
   <div className="navbar-end">
     
 
-    {user?.uid?<button className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-12 w-10 mr-2'/>Log Out</button>
+    {user?.uid?<button  onClick={logOuthander} className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-12 w-10 mr-2'/>Log Out</button>
     :
     <>
     <Link to='/singup' className='text-xl  text-white font-style'><MdOutlineSingleBed className='inline h-12 w-10 mr-2'/>Sing Up</Link>

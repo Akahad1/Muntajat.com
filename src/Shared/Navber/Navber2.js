@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineHome,AiFillContacts } from 'react-icons/ai'
 import { FaBloggerB, } from 'react-icons/fa'
@@ -6,9 +6,18 @@ import { GrCatalog, GrCatalogOption} from 'react-icons/gr'
 import { MdOutlineDashboard,MdOutlineSingleBed} from 'react-icons/md'
 import { BiSolidLogInCircle} from 'react-icons/bi'
 import { RiLogoutCircleLine} from 'react-icons/ri'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navber2 = () => {
-    const[user,setUser]=useState([])
+  const {user,logOut,cartSup,setSidebarOpen}=useContext(AuthContext)
+  console.log(cartSup)
+
+  const logOuthander=()=>{
+    logOut()
+    .then(()=>{})
+    .then(error=>console.log(error))
+
+  }
     return (
         <div>
             <div className="navbar bg-slate-600">
@@ -23,15 +32,15 @@ const Navber2 = () => {
         <li><Link  className='text-xl font-style'><li>
           <Link>Catagory</Link>
           <ul className="p-2">
-            <li><Link to='/laptop'>Laptop</Link></li>
-            <li><Link>All Mobile</Link></li>
-           <li><Link>All Tablet</Link></li>
+            <li><Link to='/allproduct/laptop'>Laptop</Link></li>
+            <li><Link to='/allproduct/mobile'>All Mobile</Link></li>
+           <li><Link to='/allproduct/tab'>All Tablet</Link></li>
           </ul>
         </li></Link></li>
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
         <li><Link to='/ContactUs' className='text-xl  font-style'>Contact Us</Link></li>
 
-        {user?.uid?<button className='text-xl ' >Log Out</button>
+        {user?.uid?<button onClick={logOuthander} className='text-xl ' >Log Out</button>
     :
     <>
     <Link to='/singup' className='text-xl ml-5 mr-5  font-style'>Sing Up</Link>
@@ -85,7 +94,7 @@ const Navber2 = () => {
         <li><Link to='/dashboard' className='text-xl  text-white font-style'><MdOutlineDashboard className='h-8 w-8 mr-2'/></Link></li>
         <li><Link to='/ContactUs' className=' text-xl  text-white font-style'><AiFillContacts className='h-8 w-8 mr-2'/></Link></li>
        
-        {user?.uid?<button className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-8 w-8 mr-2'/></button>
+        {user?.uid?<button onClick={logOuthander} className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-8 w-8 mr-2'/></button>
     :
     <>
     <Link to='/singup' className='text-xl  text-white font-style'><MdOutlineSingleBed className='inline h-12 w-8 mr-2'/></Link>

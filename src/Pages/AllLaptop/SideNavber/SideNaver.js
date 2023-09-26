@@ -20,9 +20,9 @@ const SideNaver = ({isOpen,onClose}) => {
       <h2>Sidebar Content</h2>
       {/* Add your sidebar content here */}
       
-       <p> <Link className='  text-xl mt-10'>All Laptop</Link></p>
-        <p><Link className='  text-xl mt-10'>All Mobile</Link></p>
-        <Link className='  text-xl mt-10'>All Tab</Link>
+       <p className='  text-xl mt-10'> <Link to='/allproduct/laptop' >All Laptop</Link></p>
+        <p className='  text-xl mt-10'><Link to='/allproduct/mobile'>All Mobile</Link></p>
+        <p className='  text-xl mt-10'><Link >All Tab</Link></p>
         
     </div>
             

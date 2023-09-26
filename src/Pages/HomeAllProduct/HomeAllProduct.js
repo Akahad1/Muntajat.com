@@ -32,7 +32,7 @@ const HomeAllProduct = () => {
 
             </div>
             <div className='flex justify-end'>
-               <Link to='/allproduct'> <button className='btn w-32' data-aos="fade-left"> See All</button></Link>
+               <Link to='/allproduct/laptop'> <button className='btn w-32' data-aos="fade-left"> See All</button></Link>
             </div>
 
            </div>
