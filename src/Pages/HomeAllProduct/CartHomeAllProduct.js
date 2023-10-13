@@ -4,13 +4,22 @@ import '@smastrom/react-rating/style.css'
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import toast, { Toaster } from 'react-hot-toast';
 
-const CartHomeAllProduct = ({laptop}) => {
+
+const CartHomeAllProduct = ({laptop,addOrderHandler,setspecificLaptop}) => {
+   
     const {name,price,SellerName,category,ratings,img}= laptop;
+    setspecificLaptop(laptop)
     useEffect(()=>{
         AOS.init({duration:'1000'});
 
     },[])
+    const notify = () => toast('Here is your toast.');
+
+    toast.success('You Sing Up Successfully');
+   
+   
     return (
         <div>
            <div className="card    border-blue-950 mb-10 lg:w-96 md:w-96 w-80 ml-5 border bg-base-100 shadow-xl" data-aos="zoom-in">
@@ -29,7 +38,9 @@ const CartHomeAllProduct = ({laptop}) => {
     <div className='flex justify-center'>
         <h1 className='text-xl text-red '><span className='text-2xl'>৳</span>{price}</h1>
     </div>
-    <button className='btn w-full mt-3'> Buy Now</button>
+    <button onClick={addOrderHandler} className='btn w-full mt-3'> Add Order</button>
+    
+      
     </div>
   </div>
   </div>

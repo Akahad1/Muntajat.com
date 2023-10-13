@@ -10,13 +10,30 @@ const AllUsers = () => {
     })
     return (
         <div>
-            {
+            <div className="">
+  <table className="table">
+  
+    <thead>
+      <tr className='flex gap-40'>
+        
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Make Admin</th>
+        <th>Delete Users</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+           <div>
+           {
                 Users.map(user=><ShowAllUsers
                 key={user._id}
                 user={user}
                 >
                 </ShowAllUsers>)
             }
+           </div>
             
             
         </div>

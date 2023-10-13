@@ -7,13 +7,12 @@ import AllMobile from "../Pages/AllMobile/AllMobile";
 import Singup from "../Pages/Authentication/Singup/Singup";
 import LogIn from "../Pages/Authentication/LongIn/LogIn";
 import AllTablet from "../Pages/AllTablet/AllTablet";
-import { BiLogoApple } from "react-icons/bi";
 import Bolgs from "../Pages/Bolgs/Bolgs";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import Myorder from "../Pages/BuyerInformation/Myorder";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddProducts from "../Pages/Dashboard/addProduct/AddProducts";
 import Myproduct from "../Pages/Dashboard/Myproduct/Myproduct";
+import MyOrder from "../Pages/Dashboard/MyOrder/MyOrder";
 
 
 
@@ -35,7 +34,7 @@ const router=createBrowserRouter([
     ]},
     {path:'/dashboard',element:<Dashboard></Dashboard>,
     children:[
-        {path:'/dashboard/myorders',element:<Myorder></Myorder>},
+        {path:'/dashboard/myorders',element:<MyOrder></MyOrder>},
         {path:'/dashboard/alluser',element:<AllUsers></AllUsers>},
         {path:'/dashboard/myproducts',element:<Myproduct></Myproduct>},
         {path:'/dashboard/addproducts',element:<AddProducts></AddProducts>},
