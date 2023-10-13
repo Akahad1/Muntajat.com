@@ -24,7 +24,7 @@ const Navber1 = () => {
         <div>
             <div  className={window.location.pathname === '/' ? ' bg-slate-500' : 'hidden'}>
             <Marquee>
-                <p className='text-white p-3' >Welcome To Our Muntajat.com.Our Shop Serveces 24 hour.Thank You For Visiting Our Website</p>
+                <p className='text-white p-3' >Welcome To Our Muntajat.com. The products of this site are delivered anywhere in the country within 7 to 10 days And 24-hour service is provided to customers. Thank You For Visiting Our Website</p>
             </Marquee>
             </div>
              <div className="navbar bg-slate-600">

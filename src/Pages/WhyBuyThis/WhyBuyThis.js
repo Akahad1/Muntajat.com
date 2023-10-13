@@ -19,8 +19,8 @@ const WhyBuyThis = () => {
   <div className="hero-content flex-col lg:flex-row-reverse"  data-aos="fade-left">
     <img src="https://securityintelligence.com/wp-content/uploads/2019/04/external_mobile-security-versus-desktop-and-laptop-security-is-there-even-a-difference-anymore.jpg" className="lg:h-96 w-full  rounded-lg shadow-2xl" alt='' />
     <div data-aos="fade-right">
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+      <h1 className="text-4xl font-bold">This site has some unique features!</h1>
+      <p className="py-6">Technology products like laptops mobiles etc are available here.The products of this site are delivered anywhere in the country within 7 to 10 days And 24-hour service is provided to customers</p>
       <button className="btn btn-primary">Get Started</button>
     </div>
   </div>

@@ -28,6 +28,9 @@ const SideNaver = ({isOpen,onClose}) => {
         <p onClick={()=>SetAddCatagory('Tablet')}className='  text-xl mt-10'><Link to='/allproduct/tab' >All Tab</Link></p>
         
     </div>
+    <div>
+      
+    </div>
             
         </div>
     );

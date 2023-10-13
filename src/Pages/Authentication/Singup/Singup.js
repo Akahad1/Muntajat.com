@@ -9,6 +9,8 @@ const Singup = () => {
   const {loginwithgoogle,updataData,createEamilPassword}=useContext(AuthContext)
   const notify = () => toast('Here is your toast.');
   const [error,setError]=useState('')
+  const [createUserEmail,setCreateUserEmail]=useState('')
+
     const singUpinPassword=(event)=>{
         event.preventDefault()
         const form =event.target
@@ -29,6 +31,25 @@ const Singup = () => {
       toast.success('You Sing Up Successfully');
       <Toaster/>
       form.reset()
+      const users={
+        name,
+        email,
+        role,
+        password,
+      }
+      fetch('http://localhost:5000/users',{
+        method:'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body:JSON.stringify(users)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+        setCreateUserEmail(data)
+      })
+
       profileupdate(name,photourl,role)
       
     })
@@ -121,7 +142,7 @@ const Singup = () => {
        </label>
        <div className="form-control">
   <div className="input-group">
-    <select name='role'  className="select select-bordered w-full">
+    <select name='role'  className="select select-bordered w-full" >
       <option disabled selected>buyer</option>
       <option>Sellar</option>
       
@@ -151,7 +172,7 @@ const Singup = () => {
      <div className="divider lg:hidden   ">OR</div>
      
 
-     <button   className="btn  md:ml-24 btn-primary  lg:ml-32"><FaFacebook className='inline   text-xl'/>Continue with Facebook </button>
+     <button   className="btn  md:ml-24 btn-primary  lg:ml-"><FaFacebook className='inline   text-xl'/>Continue with Facebook </button>
      </div>
      <div className="form-control mt-6">
        <button type='submit' className="btn btn-primary ">Sing Up</button>

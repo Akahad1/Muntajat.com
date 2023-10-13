@@ -63,7 +63,7 @@ const AllMobile = () => {
             '></div>
 
             <div className='grid grid-cols-12 gap-4 '>
-                <div className='lg:col-span-2  bg-base-200 lg:block md:hidden hidden'>
+                <div className='lg:col-span-2 lg:mb-12 bg-base-200 lg:block md:hidden hidden'>
                     <div>
                         <h1  className='text-2xl ml-2 p-3'>ALL CATAGORY PRODUCT</h1>
                         <div>

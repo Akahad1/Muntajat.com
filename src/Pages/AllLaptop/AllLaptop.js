@@ -10,11 +10,26 @@ import { BsLayoutTextSidebar } from 'react-icons/bs';
 const AllLaptop = () => {
     const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
     const [Laptops,setLaptops]=useState([])
+    const [sort,setSort]=useState('')
+    const [minValueShow, setMinValueShow] = useState(0);
+  const [maxValueshow, setMaxValueshow] = useState(200000);
+  const [minValue,setMinValue]=useState(0);
+  const [maxValue,setMaxValue]=useState(200000)
+    
     useEffect(()=>{
-     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}`)
+     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}&minValue=${minValue}&maxValue=${maxValue}`)
      .then(res=>res.json())
      .then(data=>setLaptops(data))
-    },[AddCatagory])
+    },[AddCatagory,sort,maxValue,minValue])
+
+    const sorthandler=(event)=>{
+        
+        const sort=event.target.value;
+        setSort(sort)
+        
+        console.log(sort)
+
+    }
 
     
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -22,6 +37,23 @@ const AllLaptop = () => {
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
+
+  
+
+  // Define functions to handle changes in the range values
+  const handleMinChange = (event) => {
+    setMinValueShow(event.target.value);
+  };
+
+  const handleMaxChange = (event) => {
+    setMaxValueshow(event.target.value);
+  };
+  const handleMaxAndMinChange = (event) => {
+    setMaxValue(event.target.value);
+    setMinValue(event.target.value)
+  };
+  
+
 
     return (
         <div className=' mb-16'>
@@ -46,14 +78,20 @@ const AllLaptop = () => {
             </div>
             <div>
             <div className="form-control">
-  <div className="input-group lg:mr-10 mr-1 md:mr-4">
-    <select name='role'  className="select select-bordered  md:w-44 lg:w-96   w-32">
-      <option  selected>Sort</option>
-      <option>Sellar</option>
+  
+  <div  className="input-group lg:mr-10 mr-1 md:mr-4">
+    <select onChange={sorthandler} name='sort'  className="select select-bordered  md:w-44 lg:w-96   w-32">
+      <option  selected>Default sorting</option>
+      <option>Sort by price: low to hight </option>
+      <option>Sort by price: hight to low </option>
+      <option>Sort by name: A to Z </option>
+      <option>Sort by name: Z to A </option>
       
     </select>
     
   </div>
+  
+ 
 </div>
             </div>
                 
@@ -74,6 +112,29 @@ const AllLaptop = () => {
                             <p onClick={()=>SetAddCatagory('Mobile')} className='mt-2 text-xl ml-2 p-3' ><Link to='/allproduct/tab'> All Tab</Link></p>
                             <p onClick={()=>SetAddCatagory('Tablet')} className='mt-2 text-xl p-3'><Link to='/allproduct/mobile' >All Mobile</Link></p>
                         </div>
+                        <div>
+      <h2>Two-Sided Range Slider</h2>
+      <div className="range-slider">
+        <input
+          type="range"
+          min={5000}
+          max={170000}
+          value={minValueShow}
+          onChange={handleMinChange}
+        />
+        <input
+          type="range"
+          min={5000}
+          max={170000}
+          value={maxValueshow}
+          onChange={handleMaxChange}
+        />
+      </div>
+      <p>Min Value: {minValueShow}</p>
+      <p>Max Value: {maxValueshow}</p>
+      <button onClick={handleMaxAndMinChange} className='btn'>Fillter</button>
+    </div>
+                        
                     </div>
 
                 </div>
