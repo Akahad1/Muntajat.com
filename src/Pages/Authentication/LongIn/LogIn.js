@@ -9,9 +9,9 @@ const LogIn = () => {
   const {login}=useContext(AuthContext)
   const [error,setError]=useState('')
    
-    // const location=useLocation()
-    // const navigate=useNavigate()
-    // const from=location.state?.from?.pathname || '/'
+    const location=useLocation()
+    const navigate=useNavigate()
+    const from=location.state?.from?.pathname || '/'
 
     const loginhander=(event)=>{
         event.preventDefault()
@@ -25,8 +25,27 @@ const LogIn = () => {
             toast.success('Your Log in Successfully');
             <Toaster/>
             form.reset()
-            console.log(user)
-            // navigate(from,{replace:true})
+            
+            const currentUser={
+              email:user.email
+
+            }
+            console.log(currentUser)
+            fetch('http://localhost:5000/jwt',{
+              method:"POST",
+              headers:{
+                'content-type' : 'application/json'
+              },
+              body: JSON.stringify(currentUser)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+              console.log(data)
+              localStorage.setItem('muntajat-token',data.token)
+              navigate(from,{replace:true})
+            })
+
+            
         })
         .catch(error=>{console.log(error)
             const message=error.message

@@ -29,8 +29,9 @@ const AuthProvider = ({children}) => {
       return signInWithEmailAndPassword(auth,email,password)
 
     }
-    // logout
+    
     const logOut=()=>{
+      localStorage.removeItem('muntajat-token')
       return signOut(auth)
     }
     // update data

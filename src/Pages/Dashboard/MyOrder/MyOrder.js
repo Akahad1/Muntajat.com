@@ -10,7 +10,12 @@ const MyOrder = () => {
 
     const {data:oders =[],}=useQuery({
         queryKey:['oders',user?.email],
-        queryFn:()=> fetch(`http://localhost:5000/orders?email=${user?.email}`)
+        queryFn:()=> fetch(`http://localhost:5000/orders?email=${user?.email}`,{
+          headers:{
+            authraization:`Bearer ${localStorage.getItem('muntajat-token')}`
+
+          }
+        })
         .then(res=>res.json())
     })
 
