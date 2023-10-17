@@ -13,6 +13,13 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddProducts from "../Pages/Dashboard/addProduct/AddProducts";
 import Myproduct from "../Pages/Dashboard/Myproduct/Myproduct";
 import MyOrder from "../Pages/Dashboard/MyOrder/MyOrder";
+import MyPyment from "../Pages/Dashboard/MyPyment/MyPyment";
+import PriviteRoute from "./PriviteRoute";
+import AdminRoute from "./adminRoute/AdminRoute";
+import RouteSellar from "./RouteSellar";
+
+
+
 
 
 
@@ -32,12 +39,16 @@ const router=createBrowserRouter([
         {path:'/allproduct/tab',element:<AllTablet></AllTablet>},
         
     ]},
-    {path:'/dashboard',element:<Dashboard></Dashboard>,
+    {path:'/dashboard',element:<PriviteRoute><Dashboard></Dashboard></PriviteRoute>,
     children:[
         {path:'/dashboard/myorders',element:<MyOrder></MyOrder>},
-        {path:'/dashboard/alluser',element:<AllUsers></AllUsers>},
+        {path:'/dashboard/alluser',element:<AdminRoute><AllUsers></AllUsers></AdminRoute>},
         {path:'/dashboard/myproducts',element:<Myproduct></Myproduct>},
-        {path:'/dashboard/addproducts',element:<AddProducts></AddProducts>},
+        {path:'/dashboard/addproducts',element:<RouteSellar><AddProducts></AddProducts></RouteSellar>},
+        {path:'/dashboard/payment/:id',element:<MyPyment></MyPyment>,
+        loader:async({params})=>fetch(`http://localhost:5000/orders/${params.id}`)
+    },
+        
     ]
 }
     

@@ -61,6 +61,7 @@ const AuthProvider = ({children}) => {
        logOut,
        AddCatagory,
        SetAddCatagory,
+       loding
 
         
 

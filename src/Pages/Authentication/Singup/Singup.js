@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
@@ -10,6 +10,9 @@ const Singup = () => {
   const notify = () => toast('Here is your toast.');
   const [error,setError]=useState('')
   const [createUserEmail,setCreateUserEmail]=useState('')
+  const location=useLocation()
+  const navigate=useNavigate()
+  const from=location.state?.from?.pathname || '/'
 
     const singUpinPassword=(event)=>{
         event.preventDefault()
@@ -18,6 +21,7 @@ const Singup = () => {
         const email =form.email.value;
         const role=form.role.value;
         const photourl=form.photourl.value;
+        
         
         const password =form.password.value;
         console.log(name,email,password,role,photourl)
@@ -31,6 +35,7 @@ const Singup = () => {
       toast.success('You Sing Up Successfully');
       <Toaster/>
       form.reset()
+      navigate(from,{replace:true})
       const users={
         name,
         email,
@@ -86,6 +91,7 @@ const Singup = () => {
         toast.success('You Sing Up Successfully');
         <Toaster/>
         console.log(user)
+        navigate(from,{replace:true})
         
       })
       .catch(error=>{console.log(error)

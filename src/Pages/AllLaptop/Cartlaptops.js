@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const Cartlaptops = ({laptop}) => {
+const Cartlaptops = ({laptop,setspecificLaptop,addOrderHandler}) => {
     const {name,price,SellerName,category,ratings,img}=laptop;
+    setspecificLaptop(laptop)
     useEffect(()=>{
         AOS.init({duration:'1000'});
 
@@ -29,7 +30,7 @@ const Cartlaptops = ({laptop}) => {
     <div className='flex justify-center'>
         <h1 className='text-xl text-red '><span className='text-2xl'>৳</span>{price}</h1>
     </div>
-    <button className='btn w-full mt-3'> Buy Now</button>
+    <button onClick={addOrderHandler} className='btn w-full mt-3'> Add Order</button>
     </div>
   </div>
   </div>

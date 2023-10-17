@@ -4,11 +4,14 @@ import Navber1 from '../../Shared/Navber/Navber1';
 import Footer from '../../Shared/Footer/Footer';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import UseUser from '../../Hooks/UseUser';
+import useAdmin from '../../Hooks/useAdmin';
+import useSellar from '../../Hooks/useSellar';
 
 const Dashboard = () => {
     const {user}=useContext(AuthContext)
-    // const [isUser]=UseUser(user?.email)
+    const [IsSellar]=useSellar(user?.email)
+    
+    const [isAdmin]=useAdmin(user?.email)
     return (
         <div className=''>
             <Navber1></Navber1>
@@ -25,8 +28,13 @@ const Dashboard = () => {
                                <div className='p-6'>
 
                                <p className=' text-white font-thin mt-2'><Link to='/dashboard/myorders'>My Orders</Link></p>
-                               <p className=' text-white font-thin mt-2'><Link to='/dashboard/addproducts'>Add Product</Link></p>
-                               <p className=' text-white font-thin mt-2'><Link to='/dashboard/myproducts'>My Products</Link></p>
+
+                               {
+                                IsSellar && <>
+                                <p className=' text-white font-thin mt-2'><Link to='/dashboard/addproducts'>Add Product</Link></p>
+                               <p className=' text-white font-thin mt-2'><Link to='/dashboard/myproducts'>My Products</Link></p></>
+                                
+                               }
 
 
 
@@ -35,7 +43,9 @@ const Dashboard = () => {
                                
                                <p className=' text-white font-thin mt-2'><Link to='/Deshborad/advertisted'>Advertisted</Link></p></>} */}
 
-                               <p className=' text-white font-thin mt-2'><Link to='/dashboard/alluser'>All User</Link></p>
+                               {
+                                isAdmin && <p className=' text-white font-thin mt-2'><Link to='/dashboard/alluser'>All User</Link></p>
+                               }
 
 
                                

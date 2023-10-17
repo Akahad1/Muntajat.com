@@ -15,9 +15,7 @@ const CartHomeAllProduct = ({laptop,addOrderHandler,setspecificLaptop}) => {
         AOS.init({duration:'1000'});
 
     },[])
-    const notify = () => toast('Here is your toast.');
-
-    toast.success('You Sing Up Successfully');
+    
    
    
     return (

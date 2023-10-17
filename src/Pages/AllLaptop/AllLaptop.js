@@ -6,21 +6,62 @@ import sidenaver from './SideNavber/SideNaver.css'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { BsLayoutTextSidebar } from 'react-icons/bs';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AllLaptop = () => {
     const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
     const [Laptops,setLaptops]=useState([])
+    const [specificLaptop,setspecificLaptop]=useState([])
     const [sort,setSort]=useState('')
     const [minValueShow, setMinValueShow] = useState(0);
   const [maxValueshow, setMaxValueshow] = useState(200000);
   const [minValue,setMinValue]=useState(0);
   const [maxValue,setMaxValue]=useState(200000)
+
+  const {name,price,SellerName,category,ratings,img}=specificLaptop;
+  const {user}=useContext(AuthContext)
     
     useEffect(()=>{
      fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}&minValue=${minValue}&maxValue=${maxValue}`)
      .then(res=>res.json())
      .then(data=>setLaptops(data))
     },[AddCatagory,sort,maxValue,minValue])
+
+    const addOrderHandler=()=>{
+      const orderProduct={
+          name,
+          price,
+          SellerName,
+          category,
+          img,
+          ratings,
+          email:user?.email
+      }
+
+     console.log(orderProduct)
+     console.log('hi')
+      fetch('http://localhost:5000/orders',{
+          method:"POST",
+          headers:{
+              "content-type" : 'application/json'
+          },
+          body: JSON.stringify(orderProduct)
+          
+      })
+      .then(res=>res.json())
+      .then(data=>{
+          console.log(data)
+          if(data.acknowledged){
+             toast.success("Successfully Order Add")
+             
+          
+         
+          //    alert('succufully add')
+             
+          }
+      })
+
+  }
 
     const sorthandler=(event)=>{
         
@@ -138,11 +179,13 @@ const AllLaptop = () => {
                     </div>
 
                 </div>
-                
+                <Toaster />
                 <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center'>
                     {Laptops.map(laptop=><Cartlaptops
                     laptop={laptop}
                     key={laptop._id}
+                    setspecificLaptop={setspecificLaptop}
+                    addOrderHandler={addOrderHandler}
 
                     ></Cartlaptops>)}
                 </div>

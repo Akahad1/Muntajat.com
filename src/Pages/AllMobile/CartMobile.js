@@ -6,8 +6,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-const CartMobile = ({mobile}) => {
+const CartMobile = ({mobile,setspecificMobile,addOrderHandler}) => {
     const {name,price,SellerName,category,ratings,img}=mobile;
+    setspecificMobile(mobile)
     useEffect(()=>{
         AOS.init({duration:'1000'});
 
@@ -30,7 +31,7 @@ const CartMobile = ({mobile}) => {
     <div className='flex justify-center'>
         <h1 className='text-xl text-red '><span className='text-2xl'>৳</span>{price}</h1>
     </div>
-    <button className='btn w-full mt-3'> Buy Now</button>
+    <button onClick={addOrderHandler} className='btn w-full mt-3'> Add Order</button>
     </div>
   </div>
   </div>

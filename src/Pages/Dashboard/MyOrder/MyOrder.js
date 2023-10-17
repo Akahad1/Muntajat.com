@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const MyOrder = () => {
+  const{user}=useContext(AuthContext)
     
 
     const {data:oders =[],}=useQuery({
-        queryKey:['oders'],
-        queryFn:()=> fetch('http://localhost:5000/orders')
+        queryKey:['oders',user?.email],
+        queryFn:()=> fetch(`http://localhost:5000/orders?email=${user?.email}`)
         .then(res=>res.json())
     })
 
@@ -44,13 +46,13 @@ const MyOrder = () => {
         
       
       <td>{
-      order.price && !order.paid && <Link to={`/deshborad/payment/${order._id}`}>
+      order.price && !order.paid && <Link to={`/dashboard/payment/${order._id}`}>
       <button className='btn btn-primary btn-xs'>Pay</button>
       
       </Link> 
       }
       ,{
-        order.Price && order.paid && <button className='text-green-400'>Paid</button>
+        order.price && order.paid && <button className='text-green-400'>Paid</button>
       }
       </td>
       </tr>)

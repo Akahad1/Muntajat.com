@@ -7,9 +7,12 @@ import TabletBanner from './TabletBanner';
 import CartTablet from './CartTablet';
 import { useEffect } from 'react';
 import SideNaver from '../AllLaptop/SideNavber/SideNaver';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AllTablet = () => {
-    const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
+    const {SetAddCatagory,AddCatagory,user}=useContext(AuthContext)
+    const [specificTablet,setspecificTablet]=useState([])
+    const {name,price,SellerName,category,ratings,img}=specificTablet;
 
     const [Tablets,setTablets]=useState([])
     useEffect(()=>{
@@ -22,6 +25,42 @@ const AllTablet = () => {
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
+
+  const addOrderHandler=()=>{
+    const orderProduct={
+        name,
+        price,
+        SellerName,
+        category,
+        img,
+        ratings,
+        email:user?.email
+    }
+
+   console.log(orderProduct)
+   
+    fetch('http://localhost:5000/orders',{
+        method:"POST",
+        headers:{
+            "content-type" : 'application/json'
+        },
+        body: JSON.stringify(orderProduct)
+        
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        if(data.acknowledged){
+           toast.success("Successfully Order Add")
+           
+        
+       
+        //    alert('succufully add')
+           
+        }
+    })
+
+}
     return (
         <div>
             <TabletBanner></TabletBanner>
@@ -74,11 +113,14 @@ const AllTablet = () => {
             </div>
 
         </div>
+        <Toaster/>
         
         <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center mt-10 '>
             {Tablets.map(tablet=><CartTablet
             tablet={tablet}
             key={tablet._id}
+            setspecificTablet={setspecificTablet}
+            addOrderHandler={addOrderHandler}
 
             ></CartTablet>)}
         </div>

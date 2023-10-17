@@ -7,9 +7,13 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import SideNaver from '../AllLaptop/SideNavber/SideNaver';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AllMobile = () => {
-    const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
+    const {SetAddCatagory,AddCatagory,user}=useContext(AuthContext)
+    const [specificMobile,setspecificMobile]=useState([])
+    const {name,price,SellerName,category,ratings,img}=specificMobile;
+  
 
     const [mobiles,setMobiles]=useState([])
     useEffect(()=>{
@@ -22,6 +26,41 @@ const AllMobile = () => {
     const toggleSidebar = () => {
       setSidebarOpen(!isSidebarOpen);
     };
+    const addOrderHandler=()=>{
+        const orderProduct={
+            name,
+            price,
+            SellerName,
+            category,
+            img,
+            ratings,
+            email:user?.email
+        }
+  
+       console.log(orderProduct)
+       
+        fetch('http://localhost:5000/orders',{
+            method:"POST",
+            headers:{
+                "content-type" : 'application/json'
+            },
+            body: JSON.stringify(orderProduct)
+            
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.acknowledged){
+               toast.success("Successfully Order Add")
+               
+            
+           
+            //    alert('succufully add')
+               
+            }
+        })
+  
+    }
     return (
         <div>
             <MoblieBanner></MoblieBanner>
@@ -75,11 +114,13 @@ const AllMobile = () => {
                     </div>
 
                 </div>
-                
+                <Toaster/>
                 <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center mt-10'>
                     {mobiles.map(mobile=><CartMobile
                     mobile={mobile}
                     key={mobile._id}
+                    setspecificMobile={setspecificMobile}
+                    addOrderHandler={addOrderHandler}
 
                     ></CartMobile>)}
                 </div>
