@@ -8,18 +8,24 @@ import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import SideNaver from '../AllLaptop/SideNavber/SideNaver';
 import toast, { Toaster } from 'react-hot-toast';
+import Spanner from '../../Hooks/Progress/Spanner';
+import useTitle from '../../Hooks/useTitle';
 
 const AllMobile = () => {
     const {SetAddCatagory,AddCatagory,user}=useContext(AuthContext)
     const [specificMobile,setspecificMobile]=useState([])
     const {name,price,SellerName,category,ratings,img}=specificMobile;
+    const [mobileLoding,setmobilesLoading]=useState(true)
+    useTitle('All Mobile')
   
 
     const [mobiles,setMobiles]=useState([])
     useEffect(()=>{
      fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}`)
      .then(res=>res.json())
-     .then(data=>setMobiles(data))
+     .then(data=>{setMobiles(data)
+        setmobilesLoading(false)
+    })
     },[AddCatagory])
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -61,14 +67,18 @@ const AllMobile = () => {
         })
   
     }
+    const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
+    if(mobileLoding){
+        return <Spanner></Spanner>
+    }
     return (
         <div>
             <MoblieBanner></MoblieBanner>
             <div className='flex justify-between'>
             <div className='lg:hidden inline ml-1 h-10   w-20'>
                 {/* <BsLayoutTextSidebar className='inline   w-8'/> */}
-            <button className="toggle-button rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
-        {isSidebarOpen ? 'Close Sidebar' : 'Show Sidebar'}
+            <button className="toggle-button btn-success btn-xs rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
+        {isSidebarOpen ? 'CloseSidebar' : 'ShowSidebar'}
       </button>
       <SideNaver isOpen={isSidebarOpen} onClose={toggleSidebar} />
       <main className="main-content">
@@ -121,6 +131,7 @@ const AllMobile = () => {
                     key={mobile._id}
                     setspecificMobile={setspecificMobile}
                     addOrderHandler={addOrderHandler}
+                    errorHandler={errorHandler}
 
                     ></CartMobile>)}
                 </div>

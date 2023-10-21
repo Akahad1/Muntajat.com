@@ -6,23 +6,30 @@ import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-// ..
+import Loading from '../../Hooks/Loading';
+import Spanner from '../../Hooks/Progress/Spanner';
+
 
 
 const HomeAllProduct = () => {
     const [alllaptop,setAllLaptop]=useState([])
     const [specificLaptop,setspecificLaptop]=useState([])
-    const {user}=useContext(AuthContext)
+    const {user,loding}=useContext(AuthContext)
+    const [productLoading,setProductLoading]=useState(true)
+   
     const {name,price,SellerName,category,ratings,img}=specificLaptop;
     useEffect(()=>{
         AOS.init({duration:'1000'});
 
     },[])
+    
 
     useEffect(()=>{
         fetch('http://localhost:5000/allproduct')
         .then(res=>res.json())
-        .then(data=>setAllLaptop(data))
+        .then(data=>{setAllLaptop(data)
+            setProductLoading(false)
+        })
     },[])
     const addOrderHandler=()=>{
         const orderProduct={
@@ -59,6 +66,10 @@ const HomeAllProduct = () => {
         })
 
     }
+    const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
+    if(loding || productLoading){
+        return <Spanner/>
+    }
     return (
         <div>
             <p className=' lg:text-2xl mt-10 lg:ml-5 md:ml-5 ml-2  '><strong>ALL PRODUCTS</strong></p>
@@ -71,6 +82,7 @@ const HomeAllProduct = () => {
             laptop={laptop}
             setspecificLaptop={setspecificLaptop}
             addOrderHandler={addOrderHandler}
+            errorHandler={errorHandler}
             ></CartHomeAllProduct>)}
             
             

@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigation } from 'react-router-dom';
+import Spanner from '../../../Hooks/Progress/Spanner';
 
 const ChackoutForm = ({price,email,_id}) => {
     
@@ -10,7 +11,7 @@ const ChackoutForm = ({price,email,_id}) => {
     const navigation =useNavigation()
     const [cartError,setCarterror]=useState('')
     const [success,setSuccess]=useState('')
-    const [processing,setProcessing]=useState(false)
+    const [processing,setProcessing]=useState(true)
     const [transfierid,setTransfierid]=useState('')
     const [clientSecret, setClientSecret] = useState("");
     
@@ -25,7 +26,9 @@ const ChackoutForm = ({price,email,_id}) => {
         body: JSON.stringify({ price }),
       })
         .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
+        .then((data) => {setClientSecret(data.clientSecret)
+          console.log(data.clientSecret)
+        });
     }, [price]);
 
     const handleSubmit=async(event)=>{
@@ -98,7 +101,7 @@ const ChackoutForm = ({price,email,_id}) => {
         if(data.insertedId){
           setTransfierid(paymentIntent.id)
       setSuccess('Payment successfull Paid')
-      setProcessing(true)
+      setProcessing(false)
 
         }
       })
@@ -131,13 +134,13 @@ const ChackoutForm = ({price,email,_id}) => {
             },
           }}
         />
-        <button className='btn btn-sm btn-success mt-5' type="submit" disabled={!stripe || !clientSecret ||processing }>
+        <button className='btn btn-sm btn-success mt-5' type="submit" disabled={!stripe || !clientSecret || !processing }>
           Pay
         </button>
       </form>
       <p className='text-red-400'>{cartError}</p>
-      <p className='text-xl'>{success}</p>
-      <p className='text-xl'>{transfierid}</p>
+      <p className='text-xl text-lime-500'>{success}</p>
+      <p className='text-xl text-lime-500'>{transfierid}</p>
         </>
     );
 };

@@ -3,11 +3,13 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { useState } from 'react';
+import useTitle from '../../../Hooks/useTitle';
 
 const LogIn = () => {
 
   const {login}=useContext(AuthContext)
   const [error,setError]=useState('')
+  useTitle("Log In")
    
     const location=useLocation()
     const navigate=useNavigate()
@@ -41,7 +43,7 @@ const LogIn = () => {
             .then(res=>res.json())
             .then(data=>{
               console.log(data)
-              localStorage.setItem('muntajat-token',data.token)
+              localStorage.setItem('muntajatToken',data.token)
               navigate(from,{replace:true})
             })
 
@@ -61,7 +63,7 @@ const LogIn = () => {
                         <img className=' lg:w-full mt-20  ' src="https://i.ibb.co/0DC09N7/3094352.jpg" alt="" />
                     </div>
                     <div className='lg:col-span-4'>
-                    <div className=" bg-center place-items-center  mt-10 mb-10 lg:mr-20 lg:ml-8  md:mr-4 mr-4 ml-4 lg:h-screen flex lg:items-center ">
+                    <div className=" bg-center place-items-center  mt-10 mb-10 lg:mr-20 lg:ml-8  md:mr-4 mr-4 ml-4 lg:h-screen flex lg:items-center md:justify-center ">
  
     
    

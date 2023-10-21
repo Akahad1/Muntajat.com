@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-const CartTablet = ({tablet,setspecificTablet,addOrderHandler}) => {
+const CartTablet = ({tablet,setspecificTablet,addOrderHandler,errorHandler}) => {
     const {name,price,SellerName,category,ratings,img}=tablet;
+    const {user}=useContext(AuthContext)
     setspecificTablet(tablet)
     useEffect(()=>{
         AOS.init({duration:'1000'});
@@ -20,7 +22,7 @@ const CartTablet = ({tablet,setspecificTablet,addOrderHandler}) => {
   <div className=" items-center  mt-6 mb-6">
     <div>
      
-    <h1 className='ml-4 '>{name}</h1>
+    <h1 className='ml-4 '>{name.slice(0,60)}...</h1>
     <h1 ><span className='ml-4'><strong>Seller Name</strong>: </span> {SellerName}</h1>
     <h1 ><span className='ml-4'><strong>Catagory</strong>: </span> {category}</h1>
     
@@ -31,7 +33,10 @@ const CartTablet = ({tablet,setspecificTablet,addOrderHandler}) => {
     <div className='flex justify-center'>
         <h1 className='text-xl text-red '><span className='text-2xl'>৳</span>{price}</h1>
     </div>
-    <button onClick={addOrderHandler} className='btn w-full mt-3'>Add Order</button>
+    {
+        user?<button onClick={addOrderHandler} className='btn w-full mt-3'>Add Order</button>:
+        <button onClick={errorHandler} className='btn w-full mt-3'>Add Order</button>
+    }
     </div>
   </div>
   </div>

@@ -8,17 +8,23 @@ import CartTablet from './CartTablet';
 import { useEffect } from 'react';
 import SideNaver from '../AllLaptop/SideNavber/SideNaver';
 import toast, { Toaster } from 'react-hot-toast';
+import Spanner from '../../Hooks/Progress/Spanner';
+import useTitle from '../../Hooks/useTitle';
 
 const AllTablet = () => {
     const {SetAddCatagory,AddCatagory,user}=useContext(AuthContext)
     const [specificTablet,setspecificTablet]=useState([])
     const {name,price,SellerName,category,ratings,img}=specificTablet;
+    const [tabletLoding,settabletsLoading]=useState(true)
+    useTitle("All Tablet")
 
     const [Tablets,setTablets]=useState([])
     useEffect(()=>{
         fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}`)
         .then(res=>res.json())
-        .then(data=>setTablets(data))
+        .then(data=>{setTablets(data)
+            settabletsLoading(false)
+        })
        },[AddCatagory])
        const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -61,14 +67,20 @@ const AllTablet = () => {
     })
 
 }
-    return (
+const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
+if(tabletLoding){
+    return <Spanner></Spanner>
+}
+
+
+     return (
         <div>
             <TabletBanner></TabletBanner>
             <div className='flex justify-between'>
             <div className='lg:hidden inline ml-1 h-10   w-20'>
                 {/* <BsLayoutTextSidebar className='inline   w-8'/> */}
-            <button className="toggle-button rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
-        {isSidebarOpen ? 'Close Sidebar' : 'Show Sidebar'}
+            <button className="toggle-button btn-success btn-xs rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
+        {isSidebarOpen ? 'CloseSidebar' : 'ShowSidebar'}
       </button>
       <SideNaver isOpen={isSidebarOpen} onClose={toggleSidebar} />
       <main className="main-content">
@@ -121,6 +133,7 @@ const AllTablet = () => {
             key={tablet._id}
             setspecificTablet={setspecificTablet}
             addOrderHandler={addOrderHandler}
+            errorHandler={errorHandler}
 
             ></CartTablet>)}
         </div>

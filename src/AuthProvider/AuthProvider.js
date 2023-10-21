@@ -31,7 +31,7 @@ const AuthProvider = ({children}) => {
     }
     
     const logOut=()=>{
-      localStorage.removeItem('muntajat-token')
+      localStorage.removeItem('muntajatToken')
       return signOut(auth)
     }
     // update data

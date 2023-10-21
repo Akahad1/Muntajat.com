@@ -5,7 +5,7 @@ import { FaBloggerB, } from 'react-icons/fa'
 import { GrCatalog, GrCatalogOption} from 'react-icons/gr'
 import { MdOutlineDashboard,MdOutlineSingleBed} from 'react-icons/md'
 import { BiSolidLogInCircle} from 'react-icons/bi'
-import { RiLogoutCircleLine} from 'react-icons/ri'
+import { RiLogoutCircleLine,RiFileList2Fill} from 'react-icons/ri'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navber2 = () => {
@@ -29,16 +29,18 @@ const Navber2 = () => {
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white  rounded-box w-52">
       <li><Link to='/' className='text-xl font-style '>Home</Link></li>
         <li><Link to='/blog' className='text-xl  font-style'>Blogs</Link></li>
-        <li><Link  className='text-xl font-style'><li>
-          <Link>Catagory</Link>
-          <ul className="p-2">
-            <li  onClick={()=>SetAddCatagory('Laptop')}><Link to='/allproduct/laptop'>Laptop</Link></li>
+
+        <details className="dropdown ">
+  <summary className="m-1  text-xl font-style">Catagory</summary>
+  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+  <li onClick={()=>SetAddCatagory('Laptop')}><Link to='/allproduct/laptop'>All Laptop</Link></li>
             <li onClick={()=>SetAddCatagory('Mobile')}><Link to='/allproduct/mobile'>All Mobile</Link></li>
-           <li onClick={()=>SetAddCatagory('Tablet')}><Link to='/allproduct/tab'>All Tablet</Link></li>
-          </ul>
-        </li></Link></li>
+              <li onClick={()=>SetAddCatagory('Tablet')}><Link to='/allproduct/tab'>All Tablet</Link></li>
+  </ul>
+</details>
+
         <li><Link to='/dashboard' className='text-xl font-style'>Dashboard</Link></li>
-        <li><Link to='/ContactUs' className='text-xl  font-style'>Contact Us</Link></li>
+        {/* <li><Link to='/ContactUs' className='text-xl  font-style'>Contact Us</Link></li> */}
 
         {user?.uid?<button onClick={logOuthander} className='text-xl ' >Log Out</button>
     :
@@ -82,17 +84,17 @@ const Navber2 = () => {
         <li><Link to='/blog' className='text-xl  text-white font-style'> <FaBloggerB className='h-10 w-8 mr-2'/></Link></li>
 
         <li className='text-xl  font-style'><div className="dropdown dropdown-bottom">
-  <label className='text-xl text-white' tabIndex={0} > <GrCatalogOption className='inline h-8 w-8 mr-2 bg-white  text-white '/></label>
+  <label className='text-xl text-white' tabIndex={0} > <RiFileList2Fill className='inline h-8 w-8 mr-2   text-white '/></label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
      <li  onClick={()=>SetAddCatagory('Laptop')}><Link to='/allproduct/laptop'>Laptop</Link></li>
       <li onClick={()=>SetAddCatagory('Mobile')}><Link to='/allproduct/mobile'>All Mobile</Link></li>
      <li onClick={()=>SetAddCatagory('Tablet')}><Link to='/allproduct/tab'>All Tablet</Link></li>
-    <li><Link>Item 4</Link></li>
+    
     
   </ul>
 </div></li>
         <li><Link to='/dashboard' className='text-xl  text-white font-style'><MdOutlineDashboard className='h-8 w-8 mr-2'/></Link></li>
-        <li><Link to='/ContactUs' className=' text-xl  text-white font-style'><AiFillContacts className='h-8 w-8 mr-2'/></Link></li>
+        {/* <li><Link to='/ContactUs' className=' text-xl  text-white font-style'><AiFillContacts className='h-8 w-8 mr-2'/></Link></li> */}
        
         {user?.uid?<button onClick={logOuthander} className='text-xl  text-white' ><RiLogoutCircleLine className='inline h-8 w-8 mr-2'/></button>
     :

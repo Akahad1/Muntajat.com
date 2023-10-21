@@ -6,8 +6,10 @@ import Section from '../Section/Section';
 import Sponsorer from '../Sponsorer/Sponsorer';
 import HowToOrder from '../HowToOrder/HowToOrder';
 import HomeAllProduct from '../HomeAllProduct/HomeAllProduct';
+import useTitle from '../../Hooks/useTitle';
 
 const Home = () => {
+    useTitle("Home")
     return (
         <div className='min-h-screen'>
             <div data-aos="fade-right">

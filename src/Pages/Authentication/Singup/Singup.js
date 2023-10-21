@@ -4,15 +4,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
+import useToken from '../../../Hooks/useToken';
+import useTitle from '../../../Hooks/useTitle';
 
 const Singup = () => {
   const {loginwithgoogle,updataData,createEamilPassword}=useContext(AuthContext)
   const notify = () => toast('Here is your toast.');
   const [error,setError]=useState('')
-  const [createUserEmail,setCreateUserEmail]=useState('')
+  // const [createUserEmail,setCreateUserEmail]=useState('')
+  // const [token]=useToken(createUserEmail)
   const location=useLocation()
   const navigate=useNavigate()
   const from=location.state?.from?.pathname || '/'
+  useTitle("Sing Up")
+  
 
     const singUpinPassword=(event)=>{
         event.preventDefault()
@@ -42,6 +47,27 @@ const Singup = () => {
         role,
         password,
       }
+      // token
+      const currentUser={
+        email:user.email
+
+      }
+      console.log(currentUser)
+      fetch('http://localhost:5000/jwt',{
+        method:"POST",
+        headers:{
+          'content-type' : 'application/json'
+        },
+        body: JSON.stringify(currentUser)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+        localStorage.setItem('muntajatToken',data.token)
+        
+      })
+      // database Stroge
+
       fetch('http://localhost:5000/users',{
         method:'POST',
         headers:{
@@ -52,8 +78,11 @@ const Singup = () => {
       .then(res=>res.json())
       .then(data=>{
         console.log(data)
-        setCreateUserEmail(data)
+        navigate(from,{replace:true})
+        
       })
+
+
 
       profileupdate(name,photourl,role)
       
@@ -91,7 +120,26 @@ const Singup = () => {
         toast.success('You Sing Up Successfully');
         <Toaster/>
         console.log(user)
-        navigate(from,{replace:true})
+        // token
+        const currentUser={
+          email:user.email
+  
+        }
+        console.log(currentUser)
+        fetch('http://localhost:5000/jwt',{
+          method:"POST",
+          headers:{
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data)
+          localStorage.setItem('muntajatToken',data.token)
+          navigate(from,{replace:true})
+        })
+        
         
       })
       .catch(error=>{console.log(error)
@@ -138,7 +186,7 @@ const Singup = () => {
        <label className="label">
          <span className="label-text ">Photo Url</span>
        </label>
-       <input type="text" name='photourl' placeholder="email" className="input input-bordered "  required/>
+       <input type="text" name='photourl' placeholder="photourl" className="input input-bordered "  required/>
      </div>
      {/* 4 */}
 
@@ -166,7 +214,7 @@ const Singup = () => {
        </label>
        <input type="password" name='password' placeholder="password" className="input input-bordered " required />
        <label className="label">
-         <span className="label-text-alt"> You already singup plese <Link to='/login' className=''>Log in</Link></span>
+         <span className="label-text-alt"> You already singup please <Link to='/login' className='text-red-500'>Log in</Link></span>
        </label>
        <label className="label">
          <span className="label-text-alt text-red-500 ">{error} </span>

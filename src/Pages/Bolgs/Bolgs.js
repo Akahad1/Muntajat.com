@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../Hooks/useTitle';
 
 const Bolgs = () => {
+  useTitle("Bolgs")
     return (
         <div className='min-h-screen'>
             <div className="collapse  ">

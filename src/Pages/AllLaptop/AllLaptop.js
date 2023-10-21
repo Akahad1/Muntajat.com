@@ -7,25 +7,28 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { BsLayoutTextSidebar } from 'react-icons/bs';
 import toast, { Toaster } from 'react-hot-toast';
+import Spanner from '../../Hooks/Progress/Spanner';
+import useTitle from '../../Hooks/useTitle';
 
 const AllLaptop = () => {
     const {SetAddCatagory,AddCatagory}=useContext(AuthContext)
     const [Laptops,setLaptops]=useState([])
     const [specificLaptop,setspecificLaptop]=useState([])
     const [sort,setSort]=useState('')
-    const [minValueShow, setMinValueShow] = useState(0);
-  const [maxValueshow, setMaxValueshow] = useState(200000);
-  const [minValue,setMinValue]=useState(0);
-  const [maxValue,setMaxValue]=useState(200000)
+    const [laptopLoding,setLaptopsLoading]=useState(true)
+    useTitle("AllLaptop")
+    
 
   const {name,price,SellerName,category,ratings,img}=specificLaptop;
   const {user}=useContext(AuthContext)
     
     useEffect(()=>{
-     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}&minValue=${minValue}&maxValue=${maxValue}`)
+     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}`)
      .then(res=>res.json())
-     .then(data=>setLaptops(data))
-    },[AddCatagory,sort,maxValue,minValue])
+     .then(data=>{setLaptops(data)
+        setLaptopsLoading(false)
+    })
+    },[AddCatagory,sort])
 
     const addOrderHandler=()=>{
       const orderProduct={
@@ -81,29 +84,22 @@ const AllLaptop = () => {
 
   
 
-  // Define functions to handle changes in the range values
-  const handleMinChange = (event) => {
-    setMinValueShow(event.target.value);
-  };
+  const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
 
-  const handleMaxChange = (event) => {
-    setMaxValueshow(event.target.value);
-  };
-  const handleMaxAndMinChange = (event) => {
-    setMaxValue(event.target.value);
-    setMinValue(event.target.value)
-  };
+ 
   
 
-
+      if(laptopLoding){
+        return <Spanner></Spanner>
+      }
     return (
         <div className=' mb-16'>
             <LaptopBanner></LaptopBanner>
             <div className='flex justify-between'>
             <div className='lg:hidden inline ml-1 h-10   w-20'>
                 {/* <BsLayoutTextSidebar className='inline   w-8'/> */}
-            <button className="toggle-button rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
-        {isSidebarOpen ? 'Close Sidebar' : 'Show Sidebar'}
+            <button className="toggle-button btn-success btn-xs rounded-btn mt-2 mb-2 " onClick={toggleSidebar}>
+            {isSidebarOpen ? 'CloseSidebar' : 'ShowSidebar'}
       </button>
       <SideNaver isOpen={isSidebarOpen} onClose={toggleSidebar} />
       <main className="main-content">
@@ -153,28 +149,7 @@ const AllLaptop = () => {
                             <p onClick={()=>SetAddCatagory('Mobile')} className='mt-2 text-xl ml-2 p-3' ><Link to='/allproduct/tab'> All Tab</Link></p>
                             <p onClick={()=>SetAddCatagory('Tablet')} className='mt-2 text-xl p-3'><Link to='/allproduct/mobile' >All Mobile</Link></p>
                         </div>
-                        <div>
-      <h2>Two-Sided Range Slider</h2>
-      <div className="range-slider">
-        <input
-          type="range"
-          min={5000}
-          max={170000}
-          value={minValueShow}
-          onChange={handleMinChange}
-        />
-        <input
-          type="range"
-          min={5000}
-          max={170000}
-          value={maxValueshow}
-          onChange={handleMaxChange}
-        />
-      </div>
-      <p>Min Value: {minValueShow}</p>
-      <p>Max Value: {maxValueshow}</p>
-      <button onClick={handleMaxAndMinChange} className='btn'>Fillter</button>
-    </div>
+                       
                         
                     </div>
 
@@ -186,6 +161,7 @@ const AllLaptop = () => {
                     key={laptop._id}
                     setspecificLaptop={setspecificLaptop}
                     addOrderHandler={addOrderHandler}
+                    errorHandler={errorHandler}
 
                     ></Cartlaptops>)}
                 </div>

@@ -1,8 +1,10 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../../Hooks/useTitle';
 
 
 const AddProducts = () => {
+    useTitle("Dashboard-AddProduct")
     const AddProductHandelr=(event)=>{
        
       
@@ -51,7 +53,7 @@ const AddProducts = () => {
                toast.success("successfully data add")
             
               
-               alert('succufully add')
+               
                form.reset()
             }
         })
@@ -64,7 +66,7 @@ const AddProducts = () => {
     return (
         <div>
             <form className='  mt-5 flex justify-center' onSubmit={AddProductHandelr}>
-            <div className="hero w-8/12 ">
+            <div className="hero lg:w-8/12 md:w-10/12  ">
 
 
 
@@ -154,6 +156,7 @@ const AddProducts = () => {
         </div>
         <div className="form-control mt-6">
             <button type='submit' className="btn btn-primary">Add Product</button>
+            <Toaster/>
         </div>
     </div>
 </div>

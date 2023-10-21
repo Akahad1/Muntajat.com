@@ -17,6 +17,7 @@ import MyPyment from "../Pages/Dashboard/MyPyment/MyPyment";
 import PriviteRoute from "./PriviteRoute";
 import AdminRoute from "./adminRoute/AdminRoute";
 import RouteSellar from "./RouteSellar";
+import DashbordHome from "../Pages/Dashboard/DashbordHome";
 
 
 
@@ -41,6 +42,7 @@ const router=createBrowserRouter([
     ]},
     {path:'/dashboard',element:<PriviteRoute><Dashboard></Dashboard></PriviteRoute>,
     children:[
+        {path:'/dashboard',element:<DashbordHome></DashbordHome>},
         {path:'/dashboard/myorders',element:<MyOrder></MyOrder>},
         {path:'/dashboard/alluser',element:<AdminRoute><AllUsers></AllUsers></AdminRoute>},
         {path:'/dashboard/myproducts',element:<Myproduct></Myproduct>},
