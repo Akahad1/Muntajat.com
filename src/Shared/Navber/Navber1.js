@@ -63,7 +63,7 @@ const Navber1 = () => {
     </div>
     <div className="avatar lg:flex md:flex  hidden">
   <div className="w-16 rounded-xl ring ring-primary ring-offset-base-100 ring-offset-2">
-    <img alt='' src="https://i.ibb.co/0r3MJc5/android-chrome-192x192.png" />
+    <img alt='' src="https://i.ibb.co/q9011h2/d032c90e-43ef-4488-b7e4-00e34ba66b06.jpg" />
   </div>
 </div>
 
@@ -111,7 +111,7 @@ const Navber1 = () => {
     :
     <>
     <Link to='/singup' className='text-xl  text-white font-style'><MdOutlineSingleBed className='inline h-12 w-10 mr-2'/>Sing Up</Link>
-    <Link to='/login' className='ml-5 mr-5 text-xl  text-white font-style '> <BiSolidLogInCircle className='inline h-12 w-10 mr-2'/>Log in</Link>
+    <Link to='/login' className='ml-5 mr-0  text-xl  text-white font-style '> <BiSolidLogInCircle className='inline h-12 w-10 mr-2'/>Log in</Link>
     </>
     }
   

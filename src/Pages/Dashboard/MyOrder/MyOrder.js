@@ -12,7 +12,7 @@ const MyOrder = () => {
 
     const {data:oders =[], refetch}=useQuery({
         queryKey:['oders',user?.email],
-        queryFn:()=> fetch(`http://localhost:5000/orders?email=${user?.email}`,{
+        queryFn:()=> fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/orders?email=${user?.email}`,{
           headers:{
             authraization:`Bearer ${localStorage.getItem('muntajatToken')}`
 

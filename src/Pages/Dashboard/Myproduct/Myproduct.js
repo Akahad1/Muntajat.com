@@ -11,7 +11,7 @@ const Myproduct = () => {
     const [userProducts,setUserProduct]=useState([])
     useTitle('Dashboard-MyProducts')
     useEffect(()=>{
-        fetch(`http://localhost:5000/catagoryproduct?sellerName=${user?.displayName}`)
+        fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/catagoryproduct?sellerName=${user?.displayName}`)
         .then(res=>res.json())
         .then(data=>setUserProduct(data))
     },[user?.displayName])

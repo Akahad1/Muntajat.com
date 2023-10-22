@@ -23,7 +23,7 @@ const CartHomeAllProduct = ({laptop,addOrderHandler,setspecificLaptop,errorHandl
    
     return (
         <div>
-           <div className="card    border-blue-950 mb-10 lg:w-96 md:w-96 w-80 ml-5 border bg-base-100 shadow-xl" data-aos="zoom-in">
+           <div className="card    border-blue-950 mb-10 lg:w-96 md:w-96 w-80 ml-5 border bg-base-100 shadow-xl " data-aos="zoom-in">
   <figure className='transition duration-300 ease-in-out'><Link ><img className='h-64 w-full mt-3 ' src={img} alt="" /></Link></figure>
   <div className=" items-center  mt-6 mb-6">
     <div>

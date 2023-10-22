@@ -16,17 +16,18 @@ const AllMobile = () => {
     const [specificMobile,setspecificMobile]=useState([])
     const {name,price,SellerName,category,ratings,img}=specificMobile;
     const [mobileLoding,setmobilesLoading]=useState(true)
+    const [sort,setSort]=useState('')
     useTitle('All Mobile')
   
 
     const [mobiles,setMobiles]=useState([])
     useEffect(()=>{
-     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}`)
+     fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}`)
      .then(res=>res.json())
      .then(data=>{setMobiles(data)
         setmobilesLoading(false)
     })
-    },[AddCatagory])
+    },[AddCatagory,sort])
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -45,7 +46,7 @@ const AllMobile = () => {
   
        console.log(orderProduct)
        
-        fetch('http://localhost:5000/orders',{
+        fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/orders',{
             method:"POST",
             headers:{
                 "content-type" : 'application/json'
@@ -67,7 +68,15 @@ const AllMobile = () => {
         })
   
     }
-    const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
+    const sorthandler=(event)=>{
+        
+        const sort=event.target.value;
+        setSort(sort)
+        
+        console.log(sort)
+
+    }
+    const errorHandler=()=> toast.error("Please Sing Up And Add Order")
     if(mobileLoding){
         return <Spanner></Spanner>
     }
@@ -93,16 +102,17 @@ const AllMobile = () => {
                 <p className='inline lg:text-xl ' onClick={()=>SetAddCatagory('Laptop')}  ><Link to='/allproduct/laptop'>Shop</Link></p>
             </div>
             <div>
-            <div className="form-control">
-  <div className="input-group lg:mr-10 mr-1 md:mr-4">
-    <select name='role'  className="select select-bordered  md:w-44 lg:w-96   w-32">
-      <option  selected>Sort</option>
-      <option>Sellar</option>
+            <div  className="input-group lg:mr-10 mr-1 md:mr-4">
+    <select onChange={sorthandler} name='sort'  className="select select-bordered  md:w-44 lg:w-96   w-32">
+      <option  selected>Default sorting</option>
+      <option>Sort by price: low to hight </option>
+      <option>Sort by price: hight to low </option>
+      <option>Sort by name: A to Z </option>
+      <option>Sort by name: Z to A </option>
       
     </select>
     
   </div>
-</div>
             </div>
                 
             </div>
@@ -125,7 +135,7 @@ const AllMobile = () => {
 
                 </div>
                 <Toaster/>
-                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center mt-10'>
+                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 lg:ml-0 md:ml-0 ml-2 justify-center  md:mr-6 mr-0 mt-10'>
                     {mobiles.map(mobile=><CartMobile
                     mobile={mobile}
                     key={mobile._id}

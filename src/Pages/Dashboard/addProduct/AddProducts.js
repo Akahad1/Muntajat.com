@@ -38,7 +38,7 @@ const AddProducts = () => {
 
 
         }
-        fetch('http://localhost:5000/catagoryproduct',{
+        fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/catagoryproduct',{
             method:"POST",
             headers:{
                 "content-type" : 'application/json'

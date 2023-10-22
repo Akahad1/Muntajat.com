@@ -7,11 +7,11 @@ const AllUsers = () => {
   useTitle('Dashboard-MyUsers')
     const {data:Users =[],refetch}=useQuery({
         queryKey: ['users'],
-        queryFn: ()=> fetch('http://localhost:5000/users')
+        queryFn: ()=> fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/users')
         .then(res=>res.json())
     })
     const MakeAdminHandler=(id)=>{
-      fetch(`http://localhost:5000/users/admin/${id}`,{
+      fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/users/admin/${id}`,{
         method:"PUT"
 
       })

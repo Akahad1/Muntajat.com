@@ -3,7 +3,7 @@
 // const useToken=email=>{
 //     const [token,setToken]=useState('')
 //     useEffect(()=>{
-//         fetch(`http://localhost:5000/jwt?email=${email}`,)
+//         fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/jwt?email=${email}`,)
 //         .then(res=>res.json())
 //         .then(data=>{
 //             if(data.muntajatToken){

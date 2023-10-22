@@ -33,7 +33,7 @@ const LogIn = () => {
 
             }
             console.log(currentUser)
-            fetch('http://localhost:5000/jwt',{
+            fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/jwt',{
               method:"POST",
               headers:{
                 'content-type' : 'application/json'

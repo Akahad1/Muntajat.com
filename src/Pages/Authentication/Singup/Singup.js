@@ -53,7 +53,7 @@ const Singup = () => {
 
       }
       console.log(currentUser)
-      fetch('http://localhost:5000/jwt',{
+      fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/jwt',{
         method:"POST",
         headers:{
           'content-type' : 'application/json'
@@ -68,7 +68,7 @@ const Singup = () => {
       })
       // database Stroge
 
-      fetch('http://localhost:5000/users',{
+      fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/users',{
         method:'POST',
         headers:{
           'content-type': 'application/json'
@@ -126,7 +126,7 @@ const Singup = () => {
   
         }
         console.log(currentUser)
-        fetch('http://localhost:5000/jwt',{
+        fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/jwt',{
           method:"POST",
           headers:{
             'content-type' : 'application/json'

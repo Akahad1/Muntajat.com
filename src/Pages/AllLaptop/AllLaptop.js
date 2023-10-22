@@ -23,7 +23,7 @@ const AllLaptop = () => {
   const {user}=useContext(AuthContext)
     
     useEffect(()=>{
-     fetch(`http://localhost:5000/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}`)
+     fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/catagoryproduct?catagory=${AddCatagory}&sorting=${sort}`)
      .then(res=>res.json())
      .then(data=>{setLaptops(data)
         setLaptopsLoading(false)
@@ -43,7 +43,7 @@ const AllLaptop = () => {
 
      console.log(orderProduct)
      console.log('hi')
-      fetch('http://localhost:5000/orders',{
+      fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/orders',{
           method:"POST",
           headers:{
               "content-type" : 'application/json'
@@ -59,7 +59,7 @@ const AllLaptop = () => {
              
           
          
-          //    alert('succufully add')
+          
              
           }
       })
@@ -84,7 +84,7 @@ const AllLaptop = () => {
 
   
 
-  const errorHandler=()=> toast.error("Plase Sing Up And Add Order")
+  const errorHandler=()=> toast.error("Please Sing Up And Add Order")
 
  
   
@@ -155,7 +155,7 @@ const AllLaptop = () => {
 
                 </div>
                 <Toaster />
-                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 place-items-center'>
+                <div className='lg:col-span-10 md:col-span-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 col-span-12 lg:ml-0 md:ml-0 ml-2 justify-center  md:mr-6 mr-0'>
                     {Laptops.map(laptop=><Cartlaptops
                     laptop={laptop}
                     key={laptop._id}

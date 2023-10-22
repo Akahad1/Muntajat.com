@@ -20,7 +20,7 @@ const ChackoutForm = ({price,email,_id}) => {
     
     useEffect(() => {
       
-      fetch("http://localhost:5000/create-payment-intent", {
+      fetch("https://muntajat-com-server-cve15m39y-akahad1.vercel.app/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ price }),
@@ -87,7 +87,7 @@ const ChackoutForm = ({price,email,_id}) => {
         orderId: _id,
 
       }
-      fetch('http://localhost:5000/payment',{
+      fetch('https://muntajat-com-server-cve15m39y-akahad1.vercel.app/payment',{
         method: "POST",
         headers:{
           "content-type" : 'application/json'

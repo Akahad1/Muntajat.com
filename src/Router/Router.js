@@ -48,7 +48,7 @@ const router=createBrowserRouter([
         {path:'/dashboard/myproducts',element:<Myproduct></Myproduct>},
         {path:'/dashboard/addproducts',element:<RouteSellar><AddProducts></AddProducts></RouteSellar>},
         {path:'/dashboard/payment/:id',element:<MyPyment></MyPyment>,
-        loader:async({params})=>fetch(`http://localhost:5000/orders/${params.id}`)
+        loader:async({params})=>fetch(`https://muntajat-com-server-cve15m39y-akahad1.vercel.app/orders/${params.id}`)
     },
         
     ]
