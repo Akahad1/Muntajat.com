@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Muntajat.com - Client Side
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend client for **Muntajat.com** is a modern e-commerce platform designed to provide a seamless and user-friendly shopping experience. The client side handles product browsing, user authentication, shopping cart management, and more.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Product Catalog
+- Browse a wide range of products with detailed descriptions and images.
+- Search products by name or keyword.
+- Filter products by category, price range, and ratings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### User Authentication
+- Secure login and registration.
+- Role-based access (buyers and sellers).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Shopping Cart
+- Add, update, and remove items from the shopping cart.
+- View total price and manage item quantities.
 
-### `npm test`
+### Checkout Process
+- Integrated payment system for secure transactions.
+- Order summary and confirmation.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Order Management
+- View order history and details.
+- Track order status.
 
-### `npm run build`
+### Responsive Design
+- Fully responsive UI optimized for desktop and mobile devices.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **React.js:** Component-based UI library for building user interfaces.
+- **Tailwind CSS:** Utility-first CSS framework for responsive and modern designs.
+- **DaisyUI:** UI component library for enhanced styling.
+- **React Router DOM:** For client-side routing.
+---
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+- Node.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Akahad1/muntajat-client.git
+   cd muntajat-client
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Open the application in your browser at `http://localhost:3000`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The client can be deployed on platforms like:
+- **Vercel**
+- **Netlify**
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contact
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For any inquiries or issues, feel free to reach out at: [ashrafulkarim234@gmail.com].
